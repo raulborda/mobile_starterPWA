@@ -11,6 +11,18 @@ import Client from "./config/apolloClientConfig";
 import { getDataInStorage } from "./Components/storage/manageStorage";
 
 const App = () => {
+  let url = window.location.href;
+  let swLocation = "/mobile_starterPWA/sw.js";
+
+  if (navigator.serviceWorker) {
+    if (url.includes("localhost")) {
+      swLocation = "/sw.js";
+    }
+    navigator.serviceWorker.register(swLocation);
+    console.log("Registró service worker");
+  } else {
+    console.log("El navegador no soporta service worker");
+  }
 
   //*States creados para utilizarlos globalmente
   const [userData, setUserData] = useState({});
@@ -25,12 +37,10 @@ const App = () => {
   const [pollTareas, setPollTareas] = useState();
 
   useEffect(() => {
-
     getDataInStorage("userInfo").then((res) => {
       if (res) {
         setUserData(res);
         setUserId(res.idUsuario);
-
       } else {
         setUserData({});
       }
@@ -41,8 +51,8 @@ const App = () => {
     } else {
       setPlataforma("OTRO");
     }
-  }, [])
-  
+  }, []);
+
   return (
     <AuthProvider>
       <ApolloProvider client={Client}>
@@ -60,7 +70,7 @@ const App = () => {
               tareas,
               setTareas,
               plataforma,
-              userId, 
+              userId,
               setUserId,
               cargando,
               setCargando,
