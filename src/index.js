@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 
 let url = window.location.href;
-let swLocation = "/duoCRM/sw.js";
+let swLocation = "/mobile_starterPWA/sw.js";
 
 if (navigator.serviceWorker) {
   if (url.includes("localhost")) {
