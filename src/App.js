@@ -12,7 +12,7 @@ import { getDataInStorage } from "./Components/storage/manageStorage";
 
 const App = () => {
   let url = window.location.href;
-  let swLocation = "/mobile_starterPWA/sw.js";
+  let swLocation = "/sw.js";
 
   if (navigator.serviceWorker) {
     if (url.includes("localhost")) {

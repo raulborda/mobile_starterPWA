@@ -8,15 +8,24 @@ const INMUTABLE_CACHE = "inmutable-v1";
 
 const APP_SHELL = [
   "/",
-  "index.html",
+  "/public/index.html",
   
 ];
 
 const APP_SHELL_INMUTABLE = [
-  
+  "/src/utils/returnExtIcon.js",
+  "/src/Components/icons/doc.js",
+  "/src/Components/icons/file.js",
+  "/src/Components/icons/jpg.js",
+  "/src/Components/icons/pdf.js",
+  "/src/Components/icons/png.js",
+  "/src/Components/icons/txt.js",
+  "/src/Components/icons/xls.js",
+  "/src/Components/icons/xml.js",
 ];
 
 self.addEventListener("install", (e) => {
+    cl
   const cacheStatic = caches
     .open(STATIC_CACHE)
     .then((cache) => cache.addAll(APP_SHELL));
@@ -28,58 +37,58 @@ self.addEventListener("install", (e) => {
   e.waitUntil(Promise.all([cacheStatic, cacheInmutable]));
 });
 
-self.addEventListener("activate", (e) => {
-  const respuesta = caches.keys().then((keys) => {
-    keys.forEach((key) => {
-      if (key !== STATIC_CACHE && key.includes("static")) {
-        return caches.delete(key);
-      }
+// self.addEventListener("activate", (e) => {
+//   const respuesta = caches.keys().then((keys) => {
+//     keys.forEach((key) => {
+//       if (key !== STATIC_CACHE && key.includes("static")) {
+//         return caches.delete(key);
+//       }
 
-      if (key !== DYNAMIC_CACHE && key.includes("dynamic")) {
-        return caches.delete(key);
-      }
+//       if (key !== DYNAMIC_CACHE && key.includes("dynamic")) {
+//         return caches.delete(key);
+//       }
 
-      if (key !== INMUTABLE_CACHE && key.includes("inmutable")) {
-        return caches.delete(key);
-      }
-    });
-  });
+//       if (key !== INMUTABLE_CACHE && key.includes("inmutable")) {
+//         return caches.delete(key);
+//       }
+//     });
+//   });
 
-  e.waitUntil(respuesta);
-});
+//   e.waitUntil(respuesta);
+// });
 
-self.addEventListener("fetch", (e) => {
-  let respuesta;
+// self.addEventListener("fetch", (e) => {
+//   let respuesta;
 
-  if (e.request.url.includes("/api")) {
-    respuesta = manejoApiMensajes(DYNAMIC_CACHE, e.request);
-  } else {
-    respuesta = caches.match(e.request).then((res) => {
-      if (res) {
-        actualizaCacheStatico(STATIC_CACHE, e.request, APP_SHELL_INMUTABLE);
-        return res;
-      } else {
-        // console.log(e.request)
-        return fetch(e.request).then((newRes) => {
-          return actualizaCacheDinamico(DYNAMIC_CACHE, e.request, newRes);
-        }).catch(console.log)
-      }
-    });
-  }
+//   if (e.request.url.includes("/api")) {
+//     respuesta = manejoApiMensajes(DYNAMIC_CACHE, e.request);
+//   } else {
+//     respuesta = caches.match(e.request).then((res) => {
+//       if (res) {
+//         actualizaCacheStatico(STATIC_CACHE, e.request, APP_SHELL_INMUTABLE);
+//         return res;
+//       } else {
+//         // console.log(e.request)
+//         return fetch(e.request).then((newRes) => {
+//           return actualizaCacheDinamico(DYNAMIC_CACHE, e.request, newRes);
+//         }).catch(console.log)
+//       }
+//     });
+//   }
 
-  e.respondWith(respuesta);
-});
+//   e.respondWith(respuesta);
+// });
 
-self.addEventListener("sync", (e) => {
-  console.log("SW: Sync");
+// self.addEventListener("sync", (e) => {
+//   console.log("SW: Sync");
 
-  // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
+//   // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
 
-  if (e.tag === "nuevo-post") {
-    // postear a DB cuando hay conexión
+//   if (e.tag === "nuevo-post") {
+//     // postear a DB cuando hay conexión
 
-    const respuesta = postearMensajes();
+//     const respuesta = postearMensajes();
 
-    e.waitUntil(respuesta);
-  }
-});
+//     e.waitUntil(respuesta);
+//   }
+// });
