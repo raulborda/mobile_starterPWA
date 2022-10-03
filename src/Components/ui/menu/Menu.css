@@ -1,0 +1,13 @@
+@import 'antd-mobile/bundle/css-vars-patch.css';
+
+.adm-tab-bar-item-active{
+    color:#56b43c !important;
+}
+
+.menu_tabs{
+    height: 60px;
+}
+
+/* .menu_items{
+    margin-top: -15px;
+} */

@@ -1,0 +1,52 @@
+@import "antd-mobile/bundle/css-vars-patch.css";
+
+.contenedor-cliente-individual {
+  height: calc(100% - 95px);
+  width: 100vw;
+  position: fixed;
+}
+
+.div_lista_l {
+  display: block;
+  height: calc(100% - 45px);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.div_lista_negocios {
+  display: block;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+/* .capsule_fix {
+  position: fixed;
+} */
+
+.div_lista_l .swipe_clienteTarea{
+  margin-bottom: -6px;
+  margin-left: -4px;
+}
+
+.contenedor-titulo-cliente {
+  background-color: white;
+  width: calc(100% - 16px);
+  margin: 5px 8px 0px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  border: 1px solid rgba(153, 153, 153, 0.2);
+  box-sizing: border-box;
+}
+
+.titulo-cliente-tareas {
+  color: #56b43c;
+  padding: 5px 0px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}

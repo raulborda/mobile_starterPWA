@@ -1,0 +1,116 @@
+@import "antd-mobile/bundle/css-vars-patch.css";
+
+.adm-tabs {
+  --active-line-color: #56b43c !important;
+}
+.adm-tabs-tab-active {
+  --active-title-color: #56b43c;
+}
+.adm-tabs-tab-active:active {
+  --active-title-color: #56b43c;
+}
+
+.adm-capsule-tabs-tab .adm-capsule-tabs-tab-active{
+  padding: 8px 10px;
+}
+
+.lista_tareas{
+  overflow: auto !important;
+}
+
+.adm-capsule-tabs-content{
+  display:flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+  margin: 0px;
+  width: 100vw;
+  overflow-x: hidden;
+  padding: 0px;
+  height: calc(100% - 64.74px);
+}
+
+.adm-floating-bubble-button {
+  background-color: #56b43c;
+}
+
+.adm-capsule-tabs-header {
+  z-index: 999;
+  background-color: white;
+  width: 99.5vw;
+  padding: 12px 0px;
+}
+
+.adm-capsule-tabs-tab {
+  padding: 8px 5px;
+  border: 1px solid #56b43c;
+  color: #56b43c;
+  background-color: white;
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+.adm-capsule-tabs-tab-wrapper{
+  padding: 0px 3px;
+}
+
+.adm-capsule-tabs-tab-active {
+  background-color: #56b43c;
+  color: white;
+}
+
+.adm-button-primary {
+  --color: #56b43c;
+}
+
+.adm-calendar{
+  background-color: white;
+}
+
+.adm-calendar-cell.adm-calendar-cell-selected.adm-calendar-cell.adm-calendar-cell-selected{
+  background-color: white;
+  color:#56b43c;
+  border: solid 1px #56b43c;
+}
+
+.div_lista_calendario{
+  display: block;
+  height: calc(100% - 318px);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  z-index: 999;
+}
+
+.div_lista{
+  display: block;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.capsule_contenedor{
+  height: 100%;
+}
+
+.adm-calendar .adm-calendar-header .adm-calendar-title {
+  font-size: 16px !important;
+}
+
+.adm-calendar .adm-calendar-header a.adm-calendar-arrow-button {
+  font-size: 0px;
+}
+.adm-calendar .adm-calendar-header a.adm-calendar-arrow-button svg {
+  height: 16px;
+}
+
+.adm-calendar-mark {
+  height: 36px !important;
+}
+
+.adm-calendar-cell {
+  height: 36px;
+}
+
+.adm-calendar-cell .adm-calendar-cell-top {
+  font-size: 14px;
+}

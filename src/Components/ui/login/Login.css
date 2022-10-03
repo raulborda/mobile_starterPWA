@@ -1,0 +1,111 @@
+@import 'antd-mobile/bundle/css-vars-patch.css';
+
+.vista_login_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.vista_login_content1{
+    background-color: #f8f8f8;
+    width: 10vw;
+    height: 100vh;
+}
+
+
+.vista_login_content{
+    background-color: #f8f8f8;
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img_content{
+    margin-top: -20vh;
+    margin-left: 2vw;
+}
+.form_login{
+    width: 115%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form_login_label{
+    font-family: sans-serif;
+    color:#8f8c8e;
+    padding: 0px;
+}
+
+/* .form_login_input{
+    margin-top: 10px; 
+    margin-bottom: 20px;
+    border : 0px none rgb(73, 80, 87); 
+    padding-top : 6px;
+    padding-bottom : 6px;
+    padding-left: 10px;
+    background : rgb(255, 255, 255);
+    box-sizing : content-box;
+} */
+
+.form_login_input{
+    border : 0px none rgb(73, 80, 87); 
+    background : rgb(255, 255, 255);
+    box-sizing : content-box;
+    width: 150px;
+}
+
+.adm-list-item-content-prefix{
+    text-align: start;
+    padding-left: 10px;
+}
+
+.recordar{
+    display: flex;
+    z-index: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.recordar_texto{
+    position: absolute;
+    left: 5%;
+}
+
+.recordar_check{
+    position: absolute;
+    right: 4%;
+}
+
+.btn_content{
+    display: block;
+    margin-left: -11px;
+
+}
+
+.btn_content_btn{
+    margin-top: 4vh;
+    width: 92vw;
+    height: 7vh;
+    display: block;
+    background-color: #56b43c;
+    color: white;
+}
+
+.recuperar{
+    margin-bottom: -30px;
+    margin-top: 30px;
+}
+
+.eye {
+    padding: 4px;
+    cursor: pointer;
+}
+

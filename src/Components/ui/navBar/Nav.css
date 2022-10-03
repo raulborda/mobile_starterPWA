@@ -1,0 +1,12 @@
+@import 'antd-mobile/bundle/css-vars-patch.css';
+
+.navBar{
+    flex: 0;
+    margin-bottom: 1px;
+}
+
+.adm-nav-bar-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

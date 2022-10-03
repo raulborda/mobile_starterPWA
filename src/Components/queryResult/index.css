@@ -1,0 +1,6 @@
+.center-wrapper {
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    margin-top: 50px;
+}

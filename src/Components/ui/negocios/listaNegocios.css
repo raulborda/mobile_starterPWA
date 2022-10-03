@@ -1,0 +1,76 @@
+.contenedor-negocios-principal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.card-negocio {
+    background-color: white;
+    margin: 1vh 2vw 1vh 2vw;
+    padding: 0px 2vw;
+    border-radius: 2px;
+}
+
+.contenedor-negocios {
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+.card-negocio-asunto {
+    font-size: 1.2rem;
+    line-height: 1rem;
+    text-overflow: ellipsis;
+    padding: 1vh 0px 0px 0vw;
+    margin: 1px;
+}
+
+.card-negocio-cliente {
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+    text-overflow: ellipsis;
+    padding: 1vh 0px 0px 0vw;
+    margin: 0px;
+    text-transform: uppercase;
+    color: #56b43c;
+}
+
+.span-negocio-cliente {
+    margin-right: 0.25rem;
+}
+
+.card-negocio-footer{
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-importe {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0px;
+    color: #333;
+}
+
+.importe-iconos {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    font-size: 1.1rem;
+    justify-self: end;
+    padding-right: 1rem;
+    color: rgb(0, 179, 60);
+}
+
+.popover-negocios {
+    margin: 0px;
+}
+
