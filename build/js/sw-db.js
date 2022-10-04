@@ -1,7 +1,11 @@
 // Utilidades para grabar PouchDB
-import PouchDB from "pouchdb";
 
-const db = new PouchDB("mensajes");
+// import * as PouchDB from "pouchdb";
+
+const db = new PouchDB('mensajes');
+// import PouchDB from "pouchdb";
+
+// const db = new PouchDB("mensajes");
 
 const guardarMensaje = (mensaje) => {
   mensaje._id = new Date().toISOString();
@@ -11,7 +15,7 @@ const guardarMensaje = (mensaje) => {
 
     const newResp = {
       ok: true,
-      offline: true,
+      offline: true
     };
 
     return new Response(JSON.stringify(newResp));

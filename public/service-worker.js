@@ -4,11 +4,25 @@ importScripts("https://cdn.jsdelivr.net/npm/pouchdb@7.3.0/dist/pouchdb.min.js");
 importScripts("./js/sw-db.js");
 importScripts("./js/sw-utils.js");
 
-const STATIC_CACHE = "static-v2";
+const STATIC_CACHE = "static-v3";
 const DYNAMIC_CACHE = "dynamic-v1";
 const INMUTABLE_CACHE = "inmutable-v1";
 
-const APP_SHELL = ["/", "/public/index.html"];
+const APP_SHELL = [
+  "/",
+  "/index.html",
+  "/js/sw-db.js",
+  "/js/sw-utils.js",
+  "/static/css/main.887216b7.css",
+  "/static/css/main.887216b7.map.css",
+  "/static/js/main.60bec065.js",
+  "/static/js/main.60bec065.js.LICENSE.txt",
+  "/static/js/main.60bec065.js.map",
+  "/static/media/logo-crm-prod.a500d60ddd2ba3ca47cf7a666bbc8631.svg",
+  "/asset-manifest.json",
+  "/manifest.json",
+  "/icon.png"
+];
 
 const APP_SHELL_INMUTABLE = [
   "/src/utils/returnExtIcon.js",
@@ -35,60 +49,60 @@ self.addEventListener("install", (e) => {
   e.waitUntil(Promise.all([cacheStatic, cacheInmutable]));
 });
 
-// self.addEventListener("activate", (e) => {
-//   const respuesta = caches.keys().then((keys) => {
-//     keys.forEach((key) => {
-//       if (key !== STATIC_CACHE && key.includes("static")) {
-//         return caches.delete(key);
-//       }
+self.addEventListener("activate", (e) => {
+  const respuesta = caches.keys().then((keys) => {
+    keys.forEach((key) => {
+      if (key !== STATIC_CACHE && key.includes("static")) {
+        return caches.delete(key);
+      }
 
-//       if (key !== DYNAMIC_CACHE && key.includes("dynamic")) {
-//         return caches.delete(key);
-//       }
+      if (key !== DYNAMIC_CACHE && key.includes("dynamic")) {
+        return caches.delete(key);
+      }
 
-//       if (key !== INMUTABLE_CACHE && key.includes("inmutable")) {
-//         return caches.delete(key);
-//       }
-//     });
-//   });
+      if (key !== INMUTABLE_CACHE && key.includes("inmutable")) {
+        return caches.delete(key);
+      }
+    });
+  });
 
-//   e.waitUntil(respuesta);
-// });
+  e.waitUntil(respuesta);
+});
 
-// self.addEventListener("fetch", (e) => {
-//   let respuesta;
-//   //si es una cosulta a la api
-//   if (e.request.url.includes("/api")) {
-//     // respuesta = manejoApiMensajes(DYNAMIC_CACHE, e.request);
-//   } else {
-//     respuesta = caches.match(e.request).then((res) => {
-//       if (res) {
-//         actualizaCacheStatico(STATIC_CACHE, e.request, APP_SHELL_INMUTABLE);
-//         return res;
-//       } else {
-//         console.log(e.request)
-//         return fetch(e.request)
-//           .then((newRes) => {
-//             return actualizaCacheDinamico(DYNAMIC_CACHE, e.request, newRes);
-//           })
-//           .catch(console.log);
-//       }
-//     });
-//   }
+self.addEventListener("fetch", (e) => {
+  let respuesta;
+  //si es una cosulta a la api
+  if (!e.request.url.startsWith("http")) {
+    // respuesta = manejoApiMensajes(DYNAMIC_CACHE, e.request);
+  } else {
+    respuesta = caches.match(e.request).then((res) => {
+      if (res) {
+        actualizaCacheStatico(STATIC_CACHE, e.request, APP_SHELL_INMUTABLE);
+        return res;
+      } else {
+        console.log(e.request)
+        return fetch(e.request)
+          .then((newRes) => {
+            return actualizaCacheDinamico(DYNAMIC_CACHE, e.request, newRes);
+          })
+          .catch(console.log);
+      }
+    });
+  }
+  console.log(respuesta);
+  e.respondWith(respuesta);
+});
 
-//   e.respondWith(respuesta);
-// });
+self.addEventListener("sync", (e) => {
+  console.log("SW: Sync");
 
-// self.addEventListener("sync", (e) => {
-//   console.log("SW: Sync");
+  // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
 
-//   // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
+  if (e.tag === "nuevo-post") {
+    // postear a DB cuando hay conexión
 
-//   if (e.tag === "nuevo-post") {
-//     // postear a DB cuando hay conexión
+    const respuesta = postearMensajes();
 
-//     const respuesta = postearMensajes();
-
-//     e.waitUntil(respuesta);
-//   }
-// });
+    e.waitUntil(respuesta);
+  }
+});

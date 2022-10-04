@@ -1,12 +1,28 @@
-// // imports
+// imports
+importScripts("https://cdn.jsdelivr.net/npm/pouchdb@7.3.0/dist/pouchdb.min.js");
+
 importScripts("./js/sw-db.js");
 importScripts("./js/sw-utils.js");
 
-const STATIC_CACHE = "static-v1";
+const STATIC_CACHE = "static-v3";
 const DYNAMIC_CACHE = "dynamic-v1";
 const INMUTABLE_CACHE = "inmutable-v1";
 
-const APP_SHELL = ["/", "/public/index.html"];
+const APP_SHELL = [
+  "/",
+  "/index.html",
+  "/js/sw-db.js",
+  "/js/sw-utils.js",
+  "/static/css/main.887216b7.css",
+  "/static/css/main.887216b7.map.css",
+  "/static/js/main.60bec065.js",
+  "/static/js/main.60bec065.js.LICENSE.txt",
+  "/static/js/main.60bec065.js.map",
+  "/static/media/logo-crm-prod.a500d60ddd2ba3ca47cf7a666bbc8631.svg",
+  "/asset-manifest.json",
+  "/manifest.json",
+  "/icon.png"
+];
 
 const APP_SHELL_INMUTABLE = [
   "/src/utils/returnExtIcon.js",
@@ -18,6 +34,7 @@ const APP_SHELL_INMUTABLE = [
   "/src/Components/icons/txt.js",
   "/src/Components/icons/xls.js",
   "/src/Components/icons/xml.js",
+  "https://cdn.jsdelivr.net/npm/pouchdb@7.3.0/dist/pouchdb.min.js",
 ];
 
 self.addEventListener("install", (e) => {
@@ -54,16 +71,16 @@ self.addEventListener("activate", (e) => {
 
 self.addEventListener("fetch", (e) => {
   let respuesta;
-
   //si es una cosulta a la api
-  if (e.request.url.includes("/api")) {
-    respuesta = manejoApiMensajes(DYNAMIC_CACHE, e.request);
+  if (!e.request.url.startsWith("http")) {
+    // respuesta = manejoApiMensajes(DYNAMIC_CACHE, e.request);
   } else {
     respuesta = caches.match(e.request).then((res) => {
       if (res) {
         actualizaCacheStatico(STATIC_CACHE, e.request, APP_SHELL_INMUTABLE);
         return res;
       } else {
+        console.log(e.request)
         return fetch(e.request)
           .then((newRes) => {
             return actualizaCacheDinamico(DYNAMIC_CACHE, e.request, newRes);
@@ -72,20 +89,20 @@ self.addEventListener("fetch", (e) => {
       }
     });
   }
-
+  console.log(respuesta);
   e.respondWith(respuesta);
 });
 
-// self.addEventListener("sync", (e) => {
-//   console.log("SW: Sync");
+self.addEventListener("sync", (e) => {
+  console.log("SW: Sync");
 
-//   // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
+  // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
 
-//   if (e.tag === "nuevo-post") {
-//     // postear a DB cuando hay conexión
+  if (e.tag === "nuevo-post") {
+    // postear a DB cuando hay conexión
 
-//     const respuesta = postearMensajes();
+    const respuesta = postearMensajes();
 
-//     e.waitUntil(respuesta);
-//   }
-// });
+    e.waitUntil(respuesta);
+  }
+});
