@@ -1,4 +1,5 @@
 // Utilidades para grabar PouchDB
+import PouchDB from "pouchdb";
 
 const db = new PouchDB("mensajes");
 
