@@ -16,7 +16,7 @@ const Client = new ApolloClient({
 		uri: `http://10.0.0.153:4002/graphql`
 		//uri: process.env.REACT_APP_APOLLO,
 		//uri: URL,
-		//uri: `http://beeapp.binamics.com.ar:4002`,
+		// uri: `http://beeapp.binamics.com.ar:4002/graphql`,
 		// fetch,
 	}),
 });

@@ -11,18 +11,6 @@ import Client from "./config/apolloClientConfig";
 import { getDataInStorage } from "./Components/storage/manageStorage";
 
 const App = () => {
-  let url = window.location.href;
-  let swLocation = "/sw.js";
-
-  if (navigator.serviceWorker) {
-    if (url.includes("localhost")) {
-      swLocation = "/sw.js";
-    }
-    navigator.serviceWorker.register(swLocation);
-    console.log("Registró service worker");
-  } else {
-    console.log("El navegador no soporta service worker");
-  }
 
   //*States creados para utilizarlos globalmente
   const [userData, setUserData] = useState({});

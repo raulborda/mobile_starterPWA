@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "./static/css/main.887216b7.css",
+    "main.js": "./static/js/main.60bec065.js",
+    "static/media/logo-crm-prod.svg": "./static/media/logo-crm-prod.a500d60ddd2ba3ca47cf7a666bbc8631.svg",
+    "index.html": "./index.html",
+    "main.887216b7.css.map": "./static/css/main.887216b7.css.map",
+    "main.60bec065.js.map": "./static/js/main.60bec065.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.887216b7.css",
+    "static/js/main.60bec065.js"
+  ]
+}

@@ -2,8 +2,8 @@
   "name": "mobile_starter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://agustinantonucci.github.io/mobile_starterPWA",
-  "main": "index.html",
+  "homepage": ".",
+  "main": ".",
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@testing-library/jest-dom": "^5.16.4",

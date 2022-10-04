@@ -19,9 +19,11 @@ function actualizaCacheStatico(staticCache, req, APP_SHELL_INMUTABLE) {
   } else {
     // console.log('actualizando', req.url );
     // console.log(req);
-    return fetch(req).then((res) => {
-      return actualizaCacheDinamico(staticCache, req, res);
-    }).catch(console.log)
+    return fetch(req)
+      .then((res) => {
+        return actualizaCacheDinamico(staticCache, req, res);
+      })
+      .catch(console.log);
   }
 }
 
@@ -31,16 +33,17 @@ const manejoApiMensajes = (cacheName, req) => {
     //Posteo de un nuevo mensaje
 
     //Si el navegador soporta sync manager lo va a guardar en IndexedDB para luego sincronizarlo
-    if(self.registration.sync) {
-        return req.clone().text().then( body => {
-
-            const bodyObj = JSON.parse(body);
-            return guardarMensaje(bodyObj);
+    if (self.registration.sync) {
+      return req
+        .clone()
+        .text()
+        .then((body) => {
+          const bodyObj = JSON.parse(body);
+          return guardarMensaje(bodyObj);
         });
     } else {
-        return fetch(req);
+      return fetch(req);
     }
-
   } else {
     return fetch(req)
       .then((res) => {
