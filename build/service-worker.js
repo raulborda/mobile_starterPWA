@@ -93,16 +93,16 @@ self.addEventListener("fetch", (e) => {
   e.respondWith(respuesta);
 });
 
-self.addEventListener("sync", (e) => {
-  console.log("SW: Sync");
+// self.addEventListener("sync", (e) => {
+//   console.log("SW: Sync");
 
-  // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
+//   // normalmente voy a tratar muchos registros distintos entonces aplicaría un switch
 
-  if (e.tag === "nuevo-post") {
-    // postear a DB cuando hay conexión
+//   if (e.tag === "nuevo-post") {
+//     // postear a DB cuando hay conexión
 
-    const respuesta = postearMensajes();
+//     const respuesta = postearMensajes();
 
-    e.waitUntil(respuesta);
-  }
-});
+//     e.waitUntil(respuesta);
+//   }
+// });
