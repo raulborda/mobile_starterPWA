@@ -3,11 +3,9 @@ import { useEffect, useState } from "react";
 import QueryResult from "../../queryResult/QueryResult";
 import ListaTarea from "../listaTareas/ListaTarea";
 
-export const TareasSemana = ({tareasParametro, error, loading}) => {
+export const TareasSemana = ({ tareasParametro, error, loading }) => {
   const [tareas, setTareas] = useState();
-  const [estado ] = useState(1);
-
-  console.log(tareasParametro);
+  const [estado] = useState(1);
 
   const ordenarDatos = (tareas) => {
     let tareasOrdenadas;
@@ -28,17 +26,12 @@ export const TareasSemana = ({tareasParametro, error, loading}) => {
 
   useEffect(() => {
     if (tareasParametro) {
-      console.log(tareasParametro);
       ordenarDatos(tareasParametro);
     }
   }, [tareasParametro]);
 
   return (
-    <QueryResult
-      loading={loading}
-      error={error}
-      data={tareas}
-    >
+    <QueryResult loading={loading} error={error} data={tareas}>
       {tareas && (
         <div className="div_lista">
           <ListaTarea itemListaTarea={tareas} />

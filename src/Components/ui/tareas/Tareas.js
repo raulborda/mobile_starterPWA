@@ -60,6 +60,7 @@ const Tareas = () => {
   });
 
   const ordenarDatos = (tareasBasico, filtroFecha) => {
+    filtroFecha = moment(filtroFecha, "YYYY-MM-DD").format("DD/MM/YYYY")
     let tareasOrdenadas;
     if (tareasBasico) {
       tareasBasico = tareasBasico.filter(
@@ -103,7 +104,7 @@ const Tareas = () => {
   // }, [dataCalendario]);
 
   const handleChange = (val) => {
-    setFiltroFecha(moment(val).format("DD/MM/YYYY"));
+    setFiltroFecha(moment(val).format("YYYY-MM-DD"));
   };
 
   useEffect(() => {}, [activeKey]);
