@@ -1,32 +1,11 @@
-import { useQuery } from "@apollo/client";
 import moment from "moment";
-import { useContext, useEffect, useState } from "react";
-import { GET_TAREAS } from "../../../graphql/queries/Tarea";
-import { GlobalContext } from "../../context/GlobalContext";
+import { useEffect, useState } from "react";
 import QueryResult from "../../queryResult/QueryResult";
 import ListaTarea from "../listaTareas/ListaTarea";
 
-export const TareasSemanaProxima = () => {
+export const TareasSemanaProxima = ({tareasParametro, error, loading}) => {
   const [tareas, setTareas] = useState();
   const [estado ] = useState(1);
-
-  const { userId } = useContext(GlobalContext);
-
-  const b1 = moment().year();
-  const a1 = moment().week();
-  const nextWeek = Number(a1) + 1;
-  const c1 = `${b1}${nextWeek}`;
-
-  const { loading, error, data } = useQuery(GET_TAREAS, {
-    variables: {
-      idUsuario: userId,
-      filtroFecha: "week",
-      fecha: c1,
-      estado: estado,
-      idUsuarioFiltro: "",
-      idClienteFiltro: null,
-    },
-  });
 
   const ordenarDatos = (tareas) => {
     let tareasOrdenadas;
@@ -46,10 +25,10 @@ export const TareasSemanaProxima = () => {
   };
 
   useEffect(() => {
-    if (data) {
-      ordenarDatos(JSON.parse(data.getTareasIframeResolver));
+    if (tareasParametro) {
+      ordenarDatos(tareasParametro);
     }
-  }, [data]);
+  }, [tareasParametro])
 
   return (
     <QueryResult
